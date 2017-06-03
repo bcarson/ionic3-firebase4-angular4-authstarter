@@ -1,17 +1,59 @@
+<!-- styles on this page from https://ionicframework.com/docs/components/#lists -->
 <ion-header>
-  <ion-navbar>
-    <ion-title>Home</ion-title>
+  <!-- This nav bar is not quite right, don't judge me :) -->
+  <ion-navbar color='primary'>
+    <button ion-button menuToggle>
+      <ion-icon name='menu'></ion-icon>
+    </button>
+    <ion-title>JabberDawg</ion-title>
   </ion-navbar>
+  <ion-toolbar class="dashboard-header" color='secondary'>
+    <ion-title>
+      Home Page
+    </ion-title>
+  </ion-toolbar>
 </ion-header>
-
 <ion-content padding>
-  <h2>Welcome to Ionic!</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+
+  <ion-list>
+    <ion-list-header>
+      User Information
+    </ion-list-header>
+    <ion-item>
+      <ion-avatar item-left>
+        <img [src]="photoURL" alt="">
+      </ion-avatar>
+      <h2>{{ userInfo?.displayName }}</h2>
+      <p>{{ email }}</p>
+
+    </ion-item>
+
+    <ion-item>
+      Avatar URL is  {{ photoURL }}
+    </ion-item>
+    <ion-item>
+      Anonymous is  {{ userInfo?.isAnonymous}}
+    </ion-item>
+    <ion-item>
+      Email is  {{ email }}
+    </ion-item>
+    <ion-item>
+      Email Verified is  {{ userInfo?.emailVerified }}
+    </ion-item>
+    <ion-item>
+      Provider is  {{providerId }}
+    </ion-item>
+    <ion-item>
+      User Id is  {{ userInfo?.uid }}
+    </ion-item>
+    <ion-item>
+      Refresh Token is  {{ userInfo?.refreshToken }}
+    </ion-item>
+  </ion-list>
+
+ <!-- <button (click)="navigate('pageName')" ion-button block>Go to Another Page</button> -->
+  <button (click)="logout()" ion-button block class='button-bottom'>Log out</button>
+
+
 </ion-content>
+<!-- This nav bar is not quite right, don't judge me :) -->
