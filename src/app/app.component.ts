@@ -36,7 +36,10 @@ export class MyApp {
     auth.authState.subscribe((authState)=>{
       if (authState){
         console.log('Logged in user :', authState.email);
-        this.nav.setRoot(TabsPage, authState); //pass authState to homepage & nav there
+
+
+        //if I nav to TabsPage here all hell breaks
+        this.nav.setRoot(HomePage, authState); //pass authState to homepage & nav there
       }else{
         this.nav.setRoot(LoginPage);
       }

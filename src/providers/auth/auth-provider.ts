@@ -88,6 +88,16 @@ export class AuthProvider {
     });
   };
 
+  getCurrentUser(){
+
+
+
+
+  };
+
+
+
+
   logout() {
     return this.afAuth.auth.signOut();
   };
