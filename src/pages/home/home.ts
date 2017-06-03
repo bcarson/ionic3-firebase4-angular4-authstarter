@@ -8,6 +8,7 @@ import {Md5} from 'ts-md5/dist/md5';
   templateUrl: 'home.html'
 })
 export class HomePage {
+  myUser: any;
   userInfo: any;
   email: any;
   password: any;
@@ -58,11 +59,23 @@ export class HomePage {
   }
 
   ionViewWillEnter(){
+
+    // this is the magic code :D
+    this.myUser = this.authProvider.getCurrentUser();
+    this.myUser.subscribe(user => {
+      console.log(user);
+      this.userInfo = user;
+
+      if(user){ this.email = user.providerData[0].email || user.email; }
+    });
+
+
     // this is an Ionic method that will fire each time BEFORE the page is loaded
     // No caching issues
-    console.log('ionViewWillEnter - Home Page');
-    this.userInfo = this.navParams.data;  //this comes fromm app.component
-    console.log('from home.ts=',this.userInfo);
+    // console.log('ionViewWillEnter - Home Page');
+    // this.userInfo = this.navParams.data;  //this comes fromm app.component
+    // console.log('navParams.data', this.navParams.data);
+    // console.log('from home.ts=',this.userInfo);
     //this.buildUserObject();
     /*This builds a user object (currentUserInfo) which can then be used to make the user object
      homogenous over a wide range of auth providers. The data is fed by the userInfo object, which unfortunately has
@@ -79,13 +92,14 @@ export class HomePage {
      instead use the providerData array for google email.
      */
 
-    if (this.userInfo.providerData[0].email) {
-      this.email = this.userInfo.providerData[0].email;
-    }else{
-      this.email = this.userInfo.email
-    }
-    //get the auth provider
-    this.providerId = this.userInfo.providerData[0].providerId;
+    // if (this.userInfo.providerData) {
+    //   this.email = this.userInfo.providerData[0].email;
+    //   //get the auth provider
+    //   this.providerId = this.userInfo.providerData[0].providerId;
+    // }else{
+    //   this.email = this.userInfo.email;
+    //   this.providerId = 0;
+    // }
 
     // get avatar- if no photourl, pull from gravatar:
     // if gravatar doesn't resolve, you'll get a gravatar anonymous image returned.
@@ -93,7 +107,7 @@ export class HomePage {
       this.photoURL = this.userInfo.photoURL;
     }else{
       console.log('using email based gravatar image');
-      this.photoURL = "https://www.gravatar.com/avatar/" + Md5.hashStr(this.email);
+      // this.photoURL = "https://www.gravatar.com/avatar/" + Md5.hashStr(this.email);
     }
     //get user uid
     this.uid = this.userInfo.uid

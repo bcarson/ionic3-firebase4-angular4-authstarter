@@ -90,7 +90,7 @@ export class AuthProvider {
 
   getCurrentUser(){
 
-
+    return this.afAuth.authState;
 
 
   };

@@ -39,7 +39,7 @@ export class MyApp {
 
 
         //if I nav to TabsPage here all hell breaks
-        this.nav.setRoot(HomePage, authState); //pass authState to homepage & nav there
+        this.nav.setRoot(TabsPage, authState); //pass authState to homepage & nav there
       }else{
         this.nav.setRoot(LoginPage);
       }
