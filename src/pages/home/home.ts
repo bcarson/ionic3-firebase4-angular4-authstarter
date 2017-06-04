@@ -23,7 +23,7 @@ export class HomePage {
     public navParams: NavParams
     )
   {
-    this.userInfo = this.navParams.data;  //this comes fromm app.component
+    //this.userInfo = this.navParams.data;  //this comes fromm app.component
   }
 
 
@@ -63,11 +63,24 @@ export class HomePage {
     // this is the magic code :D
     this.myUser = this.authProvider.getCurrentUser();
     this.myUser.subscribe(user => {
-      console.log(user);
-      this.userInfo = user;
+      //console.log(user);
+     //this.userInfo = user;
 
       if(user){ this.email = user.providerData[0].email || user.email; }
+
+      if (user.providerData[0].photoURL) {
+        this.photoURL = user.photoURL;
+      }else{
+        console.log('using email based gravatar image');
+         this.photoURL = "https://www.gravatar.com/avatar/" + Md5.hashStr(this.email);
+      }
+      //get user uid
+      this.uid = user.uid;
+      this.providerId = user.providerData[0].providerId;
+
+
     });
+
 
 
     // this is an Ionic method that will fire each time BEFORE the page is loaded
@@ -103,14 +116,7 @@ export class HomePage {
 
     // get avatar- if no photourl, pull from gravatar:
     // if gravatar doesn't resolve, you'll get a gravatar anonymous image returned.
-    if (this.userInfo.photoURL) {
-      this.photoURL = this.userInfo.photoURL;
-    }else{
-      console.log('using email based gravatar image');
-      // this.photoURL = "https://www.gravatar.com/avatar/" + Md5.hashStr(this.email);
-    }
-    //get user uid
-    this.uid = this.userInfo.uid
+
   }
 
   ionViewWillLeave(){

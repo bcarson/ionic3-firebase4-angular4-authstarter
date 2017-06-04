@@ -23,7 +23,7 @@
       <ion-avatar item-left>
         <img [src]="photoURL" alt="">
       </ion-avatar>
-      <h2>{{ userInfo?.displayName }}</h2>
+      <h2>{{ user?.displayName }}</h2>
       <p>{{ email }}</p>
 
     </ion-item>
@@ -32,22 +32,22 @@
       Avatar URL is  {{ photoURL }}
     </ion-item>
     <ion-item>
-      Anonymous is  {{ userInfo?.isAnonymous}}
+      Anonymous is  {{ user?.isAnonymous}}
     </ion-item>
     <ion-item>
       Email is  {{ email }}
     </ion-item>
     <ion-item>
-      Email Verified is  {{ userInfo?.emailVerified }}
+      Email Verified is  {{ user?.emailVerified }}
     </ion-item>
     <ion-item>
       Provider is  {{providerId }}
     </ion-item>
     <ion-item>
-      User Id is  {{ userInfo?.uid }}
+      User Id is  {{ user?.uid }}
     </ion-item>
     <ion-item>
-      Refresh Token is  {{ userInfo?.refreshToken }}
+      Refresh Token is  {{ user?.refreshToken }}
     </ion-item>
   </ion-list>
 
