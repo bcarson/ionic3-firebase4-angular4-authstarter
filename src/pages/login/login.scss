@@ -1,3 +1,22 @@
 page-login {
+    .email {
+        padding: 10px;
+    }
 
+    .reset {
+        min-width: 1px;
+        margin: 0 auto;
+        font-size: 0.9em;
+    }
+
+    .register {
+        width: 88%;
+        margin: 0 auto;
+    }
+
+    ion-grid {
+        height: 100%;
+        display: flex;
+        justify-content: space-around;
+    }
 }

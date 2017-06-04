@@ -6,18 +6,37 @@
     </button>
     <ion-title>JabberDawg</ion-title>
   </ion-navbar>
-  <ion-toolbar class="dashboard-header" color='secondary'>
+    <ion-toolbar class="dashboard-header" color='secondary'>
     <ion-title>
-      Login Page
+      Login
     </ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content padding>
+<ion-grid>
+  <ion-card>
+    <ion-card-header>Social Login:</ion-card-header>
+    <ion-row>
+      <ion-col center text-center>
+        <button ion-button (click)="login('facebook')">
+          <ion-icon name="logo-facebook"></ion-icon>
+        </button>
+      </ion-col>
+      <ion-col center text-center>
+        <button ion-button (click)="login('twitter')">
+          <ion-icon name="logo-twitter"></ion-icon>
+        </button>
+      </ion-col>
+      <ion-col center text-center>
+        <button ion-button (click)="login('google')">
+          <ion-icon name="logo-google"></ion-icon>
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-card>
 
-  <ion-title>Login</ion-title>
-
-
-
+<ion-card>
+<ion-card-header>Email Login:</ion-card-header>
   <form [formGroup]="loginForm" (ngSubmit)="submit()" novalidate>
     <ion-row>
       <ion-item>
@@ -31,37 +50,22 @@
         <ion-input type="password" placeholder="Password" formControlName="password"></ion-input>
       </ion-item>
     </ion-row>
+  <ion-row class='email'>
+    <button (click)="login('email')" ion-button block>Submit</button>
+    <span class='reset' ion-text color='danger' [navPush]="resetPasswordPage">Forgot your password? Click here to reset.</span>
+  </ion-row>
   </form>
-  <ion-row>
-    <button (click)="login('anonymous')" ion-button block>Log in Anon</button>
+</ion-card>
+
+  <ion-row class='register'>
+    <button [navPush]="signupPage" ion-button block>Sign Up</button>
   </ion-row>
-
-  <ion-row>
-    <button (click)="login('email')" ion-button block>Email login</button>
-  </ion-row>
-  <ion-row>
-    <button [navPush]="signupPage" ion-button block>Sign up</button>
-  </ion-row>
-  <!--new link to sign up page-->
-  <ion-row>
-    <button [navPush]="resetPasswordPage" ion-button block>Reset password</button>
-
-  </ion-row>
-  <ion-row>
-    <button (click)="logout()" ion-button block>Log out</button>
-  </ion-row>
-  <!--facebook login-->
+</ion-grid>
 
 
 
-  <ion-row>
-    <button (click)="login('facebook')" ion-button block>Facebook login</button>
 
-  </ion-row>
 
-  <button (click)="login('google')" ion-button block>Google login</button>
-
-  <button (click)="login('twitter')" ion-button block>Twitter login</button>
 
 </ion-content>
 

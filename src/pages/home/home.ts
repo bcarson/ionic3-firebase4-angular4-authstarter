@@ -9,7 +9,7 @@ import {Md5} from 'ts-md5/dist/md5';
 })
 export class HomePage {
   myUser: any;
-  userInfo: any;
+  user: any;
   email: any;
   password: any;
   providerId: any;
@@ -55,35 +55,26 @@ export class HomePage {
     // this is an Ionic method that will fire ONCE after the page is loaded the first time
     // No guarantee this will fire, if its cached it will use that.
     console.log('ionViewDidLoad - Home Page');
-    console.log('whatever');
-  }
-
-  ionViewWillEnter(){
 
     // this is the magic code :D
     this.myUser = this.authProvider.getCurrentUser();
     this.myUser.subscribe(user => {
-      //console.log(user);
-     //this.userInfo = user;
 
-      if(user){ this.email = user.providerData[0].email || user.email; }
 
-      if (user.providerData[0].photoURL) {
-        this.photoURL = user.photoURL;
-      }else{
-        console.log('using email based gravatar image');
-         this.photoURL = "https://www.gravatar.com/avatar/" + Md5.hashStr(this.email);
-      }
-      //get user uid
-      this.uid = user.uid;
-      this.providerId = user.providerData[0].providerId;
-
+      console.log(user);
+      this.user = user;
 
     });
 
+  }
+
+  ionViewWillEnter(){
+  // this is an Ionic method that will fire each time BEFORE the page is loaded
 
 
-    // this is an Ionic method that will fire each time BEFORE the page is loaded
+
+
+    
     // No caching issues
     // console.log('ionViewWillEnter - Home Page');
     // this.userInfo = this.navParams.data;  //this comes fromm app.component

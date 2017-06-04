@@ -25,7 +25,6 @@ export class AuthProvider {
         });
       });
 
-
     } else if (method === 'google') {
       return Observable.create(observer => {
         this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider()).then((authData) => {
@@ -35,7 +34,6 @@ export class AuthProvider {
         });
       });
 
-
     } else if (method === 'twitter') {
       return Observable.create(observer => {
         this.afAuth.auth.signInWithPopup(new firebase.auth.TwitterAuthProvider()).then((authData) => {
@@ -44,7 +42,6 @@ export class AuthProvider {
           observer.error(error);
         });
       });
-
 
     } else if (method === 'email') {
       return Observable.create(observer => {
@@ -90,13 +87,33 @@ export class AuthProvider {
 
   getCurrentUser(){
 
-    return this.afAuth.authState;
 
+    let authMap = this.afAuth.authState.map((response) => {
+      console.log('response', response);
+      let userObject, providerData;
+
+      if(response.providerData){ providerData = response.providerData[0]; }
+
+      userObject = {
+        'email': response.email || providerData.email,
+        'displayName': response.displayName || providerData.displayName,
+        'uid': response.uid || providerData.uid,
+        'avatar': response.photoURL || providerData.photoURL,
+        'providerId': response.providerId || providerData.providerId,
+        'emailVerified': response.emailVerified,
+        'isAnonymous': response.isAnonymous,
+        'refreshToken': response.refreshToken 
+      }
+
+
+      return userObject;
+
+    });
+
+ return authMap;
+ //   return this.afAuth.authState;
 
   };
-
-
-
 
   logout() {
     return this.afAuth.auth.signOut();

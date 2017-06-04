@@ -21,27 +21,27 @@
     </ion-list-header>
     <ion-item>
       <ion-avatar item-left>
-        <img [src]="photoURL" alt="">
+        <img [src]="user?.avatar" alt="">
       </ion-avatar>
       <h2>{{ user?.displayName }}</h2>
-      <p>{{ email }}</p>
+      <p>{{ user?.email }}</p>
 
     </ion-item>
 
     <ion-item>
-      Avatar URL is  {{ photoURL }}
+      Avatar URL is  {{ user?.avatar }}
     </ion-item>
     <ion-item>
       Anonymous is  {{ user?.isAnonymous}}
     </ion-item>
     <ion-item>
-      Email is  {{ email }}
+      Email is  {{ user?.email }}
     </ion-item>
     <ion-item>
       Email Verified is  {{ user?.emailVerified }}
     </ion-item>
     <ion-item>
-      Provider is  {{providerId }}
+      Provider is  {{ user?.providerId }}
     </ion-item>
     <ion-item>
       User Id is  {{ user?.uid }}
