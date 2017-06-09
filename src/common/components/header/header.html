@@ -1,0 +1,17 @@
+<ion-navbar color='primary' padding>
+    <button ion-button menuToggle>
+        <ion-icon name='menu'></ion-icon>
+    </button>
+    <ion-title>SIRE</ion-title>
+    <ion-buttons end>
+        <button *ngIf="user; else help" ion-button (click)="logout()">
+            <ion-icon name='exit'></ion-icon>
+        </button>
+
+        <ng-template #help>
+            <button ion-button>
+                <ion-icon name='help-circle'></ion-icon>
+            </button>
+        </ng-template>
+    </ion-buttons>
+</ion-navbar>

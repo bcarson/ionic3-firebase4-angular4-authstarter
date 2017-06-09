@@ -3,17 +3,17 @@ import { Platform,Nav } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import {AngularFireAuth} from "angularfire2/auth";
-import { LoginPage } from '../pages/login/login';
-import { HomePage } from '../pages/home/home';
-import { TabsPage } from '../pages/tabs/tabs';
+import { LoginPage, HomePage, TabsPage } from '../pages/pages';
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
   //rootPage:any = TabsPage;
-  rootPage = LoginPage;
+  //rootPage = LoginPage;
   //nav:Nav;
+  pages: Array<any>;
+
   constructor(
     public platform: Platform,
     private statusBar: StatusBar,
@@ -45,5 +45,25 @@ export class MyApp {
       }
     });
 
+    /*
+    * this.pages is used in the main nav menu in app.html 
+    * (top left corner hamburger icon in the application)
+    * You'll likely change this list, just getting you started here.
+    */
+    this.pages = [
+      { title: 'Login', component: LoginPage },
+      { title: 'Home', component: HomePage }
+    ];
   }
+
+
+    /*
+    *   This is the method called from the main menu in app.html.
+    *   We can navigate between pages with nav.push and nav.pop.
+    *   Since this is the main menu, we'll use nav.setRoot here
+    *   which will reset the navigation stack, no back button.
+    */
+    openPage(page) {
+      this.nav.setRoot(page.component);
+    }
 }

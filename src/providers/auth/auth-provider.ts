@@ -90,23 +90,30 @@ export class AuthProvider {
 
     let authMap = this.afAuth.authState.map((response) => {
       console.log('response', response);
-      let userObject, providerData;
+      
+      if(response){ // If there is a user logged in
+        let userObject, providerData;
 
-      if(response.providerData){ providerData = response.providerData[0]; }
+        if(response.providerData){ 
+          // Mapping data for various different auth providers
+          providerData = response.providerData[0]; 
+        }
 
-      userObject = {
-        'email': response.email || providerData.email,
-        'displayName': response.displayName || providerData.displayName,
-        'uid': response.uid || providerData.uid,
-        'avatar': response.photoURL || providerData.photoURL,
-        'providerId': response.providerId || providerData.providerId,
-        'emailVerified': response.emailVerified,
-        'isAnonymous': response.isAnonymous,
-        'refreshToken': response.refreshToken 
+        userObject = {
+          'email': response.email || providerData.email,
+          'displayName': response.displayName || providerData.displayName,
+          'uid': response.uid || providerData.uid,
+          'avatar': response.photoURL || providerData.photoURL,
+          'providerId': response.providerId || providerData.providerId,
+          'emailVerified': response.emailVerified,
+          'isAnonymous': response.isAnonymous,
+          'refreshToken': response.refreshToken 
+        };
+
+        return userObject;
+      } else { // if there is no logged in user, return null.
+        return null;
       }
-
-
-      return userObject;
 
     });
 

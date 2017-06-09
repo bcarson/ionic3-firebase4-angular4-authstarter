@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Keyboard } from '@ionic-native/keyboard';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthProvider } from '../../providers/auth/auth-provider';
 import { ResetPasswordPage } from '../reset-password/reset-password';
@@ -23,7 +24,8 @@ export class LoginPage {
     public nav: NavController,
     public navParams: NavParams,
     public authProvider: AuthProvider,
-    public fb: FormBuilder
+    public fb: FormBuilder,
+    public keyboard: Keyboard
   ){
 
     this.loginForm = this.fb.group({
@@ -32,7 +34,11 @@ export class LoginPage {
     });
     this.email = this.loginForm.controls['email'];
     this.password = this.loginForm.controls['password'];
+    this.keyboard.onKeyboardShow().subscribe(data => console.log('keyboard!',data));
   };
+
+
+
 
   login(method){
     this.authProvider.login(method, this.email.value, this.password.value).subscribe(data =>{

@@ -1,18 +1,13 @@
 <ion-header>
-  <!-- This nav bar is not quite right, don't judge me :) -->
-  <ion-navbar color='primary'>
-    <button ion-button menuToggle>
-      <ion-icon name='menu'></ion-icon>
-    </button>
-    <ion-title>JabberDawg</ion-title>
-  </ion-navbar>
-    <ion-toolbar class="dashboard-header" color='secondary'>
+  <app-header></app-header>
+  <ion-toolbar class="dashboard-header" color='secondary'>
     <ion-title>
-      Login
+      Login Page
     </ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-content padding>
+
+<ion-content padding  class="has-header">
 <ion-grid>
   <ion-card>
     <ion-card-header>Social Login:</ion-card-header>

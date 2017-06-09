@@ -1,0 +1,26 @@
+<ion-header>
+  <app-header></app-header>
+  <ion-toolbar class="dashboard-header" color='secondary'>
+    <ion-title>
+      Request Page
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form class="form-horizontal" novalidate [formGroup]="requestForm">
+    <fieldset>
+      <div class="form-group" 
+        [ngClass]="{'has-error': (
+          requestForm.get('date').touched ||
+          requestForm.get('date').dirty) &&
+          !requestForm.get('date').valid }">
+        <label for="date" class="col-md-2 control-label">Date</label>
+
+        <div class="col-md-8">
+          <ion-icon name="calendar" (click)="pickDate()"></ion-icon>
+        </div>
+      </div>
+    </fieldset>
+  </form>
+</ion-content>

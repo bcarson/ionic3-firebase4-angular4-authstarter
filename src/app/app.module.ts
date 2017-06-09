@@ -5,13 +5,25 @@ import { MyApp } from './app.component';
 import {AngularFireModule} from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AuthProvider} from '../providers/auth/auth-provider';
-import { AboutPage } from '../pages/about/about';
-import { ContactPage } from '../pages/contact/contact';
-import { HomePage } from '../pages/home/home';
-import { TabsPage } from '../pages/tabs/tabs';
-import {SignupPage} from '../pages/signup/signup';
-import {LoginPage} from '../pages/login/login';
-import {ResetPasswordPage} from '../pages/reset-password/reset-password';
+import { ReactiveFormsModule } from '@angular/forms';
+import { DatePicker } from '@ionic-native/date-picker';
+import { Keyboard } from '@ionic-native/keyboard';
+
+import { 
+  AboutPage,
+  ContactPage,
+  HomePage,
+  LoginPage,
+  ProfilePage,
+  RequestPage,
+  ResetPasswordPage,
+  SignupPage,
+  TabsPage
+} from '../pages/pages';
+
+import {
+  HeaderComponent
+} from '../common/components'
 
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -29,19 +41,25 @@ export const firebaseConfig = {
 @NgModule({
   declarations: [
     MyApp,
+    // PAGES:
     AboutPage,
     ContactPage,
     HomePage,
-    TabsPage,
-    SignupPage,
     LoginPage,
-    ResetPasswordPage
+    ProfilePage,
+    RequestPage,
+    ResetPasswordPage,
+    SignupPage,
+    TabsPage,
+    // COMPONENTS:
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(firebaseConfig),
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    ReactiveFormsModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -49,12 +67,16 @@ export const firebaseConfig = {
     AboutPage,
     ContactPage,
     HomePage,
-    TabsPage,
-    SignupPage,
     LoginPage,
-    ResetPasswordPage
+    ProfilePage,
+    RequestPage,
+    ResetPasswordPage,
+    SignupPage,
+    TabsPage
   ],
   providers: [
+    DatePicker,
+    Keyboard,
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
